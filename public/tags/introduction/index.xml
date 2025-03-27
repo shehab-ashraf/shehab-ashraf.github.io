@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Introduction on Shehab&#39;log</title>
+    <link>https://shehab-ashraf.github.io/tags/introduction/</link>
+    <description>Recent content in Introduction on Shehab&#39;log</description>
+    <generator>Hugo -- 0.145.0</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 25 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://shehab-ashraf.github.io/tags/introduction/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My First Blog Post</title>
+      <link>https://shehab-ashraf.github.io/posts/first-psot/</link>
+      <pubDate>Tue, 25 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://shehab-ashraf.github.io/posts/first-psot/</guid>
+      <description>&lt;p&gt;This is my first blog post on Hugo using the PaperMod theme!&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
