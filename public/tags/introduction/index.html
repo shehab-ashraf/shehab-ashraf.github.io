@@ -1,219 +1,96 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shehab'Log</title>
 
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Introduction | Shehab&#39;log</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://shehab-ashraf.github.io/tags/introduction/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.82d0a516df3d6243f538a6767a0f67d0f47ef525168d70776168d188cb111186.css" integrity="sha256-gtClFt89YkP1OKZ2eg9n0PR&#43;9SUWjXB3YWjRiMsREYY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://shehab-ashraf.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://shehab-ashraf.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://shehab-ashraf.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://shehab-ashraf.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://shehab-ashraf.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://shehab-ashraf.github.io/tags/introduction/index.xml">
+<link rel="alternate" hreflang="en" href="https://shehab-ashraf.github.io/tags/introduction/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
 
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
 
+            .list {
+                background: var(--theme);
+            }
 
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
 
-  
-  <style>
-     
-    :root {
-      --bg: #fafafa;
-      --fg: #222;
-      --header-bg: #ffffff;
-      --card-bg: #f4f4f4;
-      --secondary-fg: #999;
-      --link-color: #0088cc;
-      --border-color: #ddd;
-    }
-    [data-theme="dark"] {
-      --bg: #1d1e20;
-      --fg: #dadadb;
-      --header-bg: #2e2e33;
-      --card-bg: #2e2e33;
-      --secondary-fg: #9b9c9d;
-      --link-color: #8ab4f8;
-      --border-color: #414246;
-    }
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
 
-     
-    * {
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.6;
-      transition: background 0.3s, color 0.3s;
-    }
-
-     
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .5rem 7rem;
-    }
-    .site-title {
-      font-size: 1rem;
-      font-weight: bold;
-      text-decoration: none;
-      color: var(--fg);
-    }
-    .nav {
-      display: flex;
-      gap: 1rem;
-    }
-    .nav a {
-      text-decoration: none;
-      color: var(--fg);
-      font-size: .7rem;
-    }
-    .nav a:hover {
-      color: var(--link-color);
-    }
-
-     
-    #theme-toggle {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      font-size: 1.1rem;
-      color: var(--fg);
-    }
-
-     
-    .container {
-  max-width: 550px;  
-  margin: 20px auto;  
-  padding: 1px;  
-    }
-
-     
-    .home-info {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .home-info h1 {
-      font-size: 1.75rem;
-      margin-bottom: 0.5rem;
-    }
-    .home-info p {
-      color: var(--secondary-fg);
-      max-width: 500px;
-      margin: 0.5rem auto;
-    }
-
-     
-    .social-icons {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: flex-start;  
-  gap: 1rem;
-  padding: 0 2.6rem;  
-}
-
-.social-icons a {
-    color: var(--fg);
-    text-decoration: none;
-    transition: color 0.2s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-.social-icons a:hover {
-    color: var(--link-color);
-}
-.social-icons svg {
-    width: 20px;
-    height: 20px;
-    stroke-width: 1.5;
-}
-
-    .post-entry {
-      background: var(--card-bg);
-      padding: 1rem;
-      border-radius: 5px;
-      margin-bottom: 1rem;
-      max-width: 480px;
-    max-height: 100px;  
-
-
-    }
-    .post-entry:hover {
-      transform: translateY(-2px);
-    }
-    .post-entry h2 {
-      font-size: 1rem;
-      margin-bottom: 0rem;
-      color: var(--fg);
-    }
-    .post-entry h2 a {
-      text-decoration: none;
-      color: var(--fg);
-    }
-    .post-entry h2 a:hover {
-      color: var(--link-color);
-    }
-    .post-entry p {
-      color: var(--secondary-fg);
-      margin-bottom: 0.6rem;
-      font-size: 0.6rem;
-    }
-    .entry-footer {
-      font-size: 0.6rem;
-      color: var(--secondary-fg);
-      display: flex;
-      gap: 1rem;
-    }
-    .welcome-text {
-  font-size: 0.65rem;  
-    padding: 0rem 2.6rem;
-    margin-top: 0rem;
-        color: #bbb;  
-}
-
-   .welcome-title {
-      font-size: 1.3rem;  
-
-  padding: .1rem 2.5rem;
-
-}
-#theme-toggle {
-    position: absolute;
-    top: 14px;  
-    right: 680px;  
-}
-
-     
-    footer {
-      text-align: center;
-      font-size: 0.85rem;
-      padding: 0rem 0;
-      color: var(--secondary-fg);
-      border-top: 1px solid var(--border-color);
-      margin-top: -1rem;
-    }
-
-    @media (max-width: 768px) {
-      .nav {
-        display: none;  
-      }
-    }
-  </style>
-
-
+    </style>
+</noscript><meta property="og:url" content="https://shehab-ashraf.github.io/tags/introduction/">
+  <meta property="og:site_name" content="Shehab&#39;log">
+  <meta property="og:title" content="Introduction">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Introduction">
+<meta name="twitter:description" content="">
 
 </head>
 
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
 
+</script>
 
-
-
-<body>
-
-<header>
-    <a class="site-title" href="#">Shehab'Log</a>
-    <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://shehab-ashraf.github.io/" accesskey="h" title="Shehab&#39;log (Alt + H)">Shehab&#39;log</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -227,72 +104,102 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
-    <nav class="nav">
-      <a href="#">Posts</a>
-      <a href="#">Archive</a>
-      <a href="#">Search</a>
-      <a href="#">Tags</a>
-      <a href="#">FAQ</a>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
     </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Introduction
+  </h1>
+</header>
 
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">My First Blog Post
+    </h2>
   </header>
-
-  
-  
-
-
-
-  <main class="container">
-
-
-
-
-
-
-   <section class="entry-content">
-  <h3 class="welcome-title">👋 Welcome to Shehab'Log</h3>
-  <p class="welcome-text">
-    Hi, I'm documenting my learning notes in this blog.
-  </p>
-  
-  <div class="social-icons">
-    
-    <a href="https://github.com/shehab-ashraf" target="_blank" rel="noopener noreferrer" title="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-        </svg>
-    </a>
-    
+  <div class="entry-content">
+    <p>This is my first blog post on Hugo using the PaperMod theme!
+</p>
   </div>
-</section>
-
-
-
-
-
-  </main>
-
-
-
-  
-  <script>
+  <footer class="entry-footer"><span title='2025-03-25 00:00:00 +0000 UTC'>March 25, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to My First Blog Post" href="https://shehab-ashraf.github.io/posts/first-psot/"></a>
+</article>
+    </main>
     
-    (function() {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme) {
-        document.documentElement.setAttribute("data-theme", savedTheme);
-      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.documentElement.setAttribute("data-theme", "dark");
-      }
-    })();
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://shehab-ashraf.github.io/">Shehab&#39;log</a></span> · 
 
-    
-    document.getElementById("theme-toggle").addEventListener("click", function() {
-      const currentTheme = document.documentElement.getAttribute("data-theme");
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
     });
-  </script>
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
 </body>
+
 </html>

@@ -2,14 +2,3 @@ baseURL = "https://shehab-ashraf.github.io/"
 title = "Shehab'log"
 theme = "PaperMod"
 
-[params]
-  defaultTheme = "auto"
-  disableThemeToggle = false
-  showReadingTime = true
-  showShareButtons = true
-  showPostNavLinks = true
-  showCodeCopyButtons = true
-  disableScrollToTop = false
-  comments = false
-  customCSS = ["css/extended/custom.css"]
-  ShowDate = true
