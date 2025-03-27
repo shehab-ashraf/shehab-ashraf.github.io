@@ -13,30 +13,3 @@ theme = "PaperMod"
   comments = false
   customCSS = ["css/extended/custom.css"]
   ShowDate = true
-
-
-
-[menu]
-  [[menu.main]]
-    name = "Posts"
-    url = "/posts/"
-    weight = 1
-
-  # Remove these sections
-  # [[menu.main]]
-  #   identifier = "archive"
-  #   name = "Archive"
-  #   url = "/archives/"
-  #   weight = 2
-
-  # [[menu.main]]
-  #   identifier = "categories"
-  #   name = "Categories"
-  #   url = "/categories/"
-  #   weight = 3
-
-  # [[menu.main]]
-  #   identifier = "tags"
-  #   name = "Tags"
-  #   url = "/tags/"
-  #   weight = 4
