@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shehab'Log</title>
+
+
+
+
+
+  
+  <style>
+     
+    :root {
+      --bg: #fafafa;
+      --fg: #222;
+      --header-bg: #ffffff;
+      --card-bg: #f4f4f4;
+      --secondary-fg: #999;
+      --link-color: #0088cc;
+      --border-color: #ddd;
+    }
+    [data-theme="dark"] {
+      --bg: #1d1e20;
+      --fg: #dadadb;
+      --header-bg: #2e2e33;
+      --card-bg: #2e2e33;
+      --secondary-fg: #9b9c9d;
+      --link-color: #8ab4f8;
+      --border-color: #414246;
+    }
+
+     
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+     
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .5rem 7rem;
+    }
+    .site-title {
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: var(--fg);
+    }
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav a {
+      text-decoration: none;
+      color: var(--fg);
+      font-size: .7rem;
+    }
+    .nav a:hover {
+      color: var(--link-color);
+    }
+
+     
+    #theme-toggle {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--fg);
+    }
+
+     
+    .container {
+  max-width: 550px;  
+  margin: 20px auto;  
+  padding: 1px;  
+    }
+
+     
+    .home-info {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .home-info h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .home-info p {
+      color: var(--secondary-fg);
+      max-width: 500px;
+      margin: 0.5rem auto;
+    }
+
+     
+    .social-icons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-start;  
+  gap: 1rem;
+  padding: 0 2.6rem;  
+}
+
+.social-icons a {
+    color: var(--fg);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.social-icons a:hover {
+    color: var(--link-color);
+}
+.social-icons svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5;
+}
+
+    .post-entry {
+      background: var(--card-bg);
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      max-width: 480px;
+    max-height: 100px;  
+
+
+    }
+    .post-entry:hover {
+      transform: translateY(-2px);
+    }
+    .post-entry h2 {
+      font-size: 1rem;
+      margin-bottom: 0rem;
+      color: var(--fg);
+    }
+    .post-entry h2 a {
+      text-decoration: none;
+      color: var(--fg);
+    }
+    .post-entry h2 a:hover {
+      color: var(--link-color);
+    }
+    .post-entry p {
+      color: var(--secondary-fg);
+      margin-bottom: 0.6rem;
+      font-size: 0.6rem;
+    }
+    .entry-footer {
+      font-size: 0.6rem;
+      color: var(--secondary-fg);
+      display: flex;
+      gap: 1rem;
+    }
+    .welcome-text {
+  font-size: 0.65rem;  
+    padding: 0rem 2.6rem;
+    margin-top: 0rem;
+        color: #bbb;  
+}
+
+   .welcome-title {
+      font-size: 1.3rem;  
+
+  padding: .1rem 2.5rem;
+
+}
+#theme-toggle {
+    position: absolute;
+    top: 14px;  
+    right: 680px;  
+}
+
+     
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      padding: 0rem 0;
+      color: var(--secondary-fg);
+      border-top: 1px solid var(--border-color);
+      margin-top: -1rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        display: none;  
+      }
+    }
+  </style>
+
+
+
+</head>
+
+
+
+
+
+<body>
+
+<header>
+    <a class="site-title" href="#">Shehab'Log</a>
+    <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+    <nav class="nav">
+      <a href="#">Posts</a>
+      <a href="#">Archive</a>
+      <a href="#">Search</a>
+      <a href="#">Tags</a>
+      <a href="#">FAQ</a>
+    </nav>
+
+  </header>
+
+  
+  
+
+
+
+  <main class="container">
+
+
+
+
+
+
+   <section class="entry-content">
+  <h3 class="welcome-title">👋 Welcome to Shehab'Log</h3>
+  <p class="welcome-text">
+    Hi, I'm documenting my learning notes in this blog.
+  </p>
+  
+  <div class="social-icons">
+    
+    <a href="https://github.com/shehab-ashraf" target="_blank" rel="noopener noreferrer" title="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+    </a>
+    
+  </div>
+</section>
+
+
+
+
+
+  </main>
+
+
+
+  
+  <script>
+    
+    (function() {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+
+    
+    document.getElementById("theme-toggle").addEventListener("click", function() {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+    });
+  </script>
+</body>
+</html>
