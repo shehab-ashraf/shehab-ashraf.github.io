@@ -50,7 +50,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: .5rem 7rem;
+      padding: 1rem 10rem;
+
     }
     .site-title {
       font-size: 1rem;
@@ -93,7 +94,7 @@
       margin-bottom: 2rem;
     }
     .home-info h1 {
-      font-size: 1.75rem;
+      font-size: 4rem;
       margin-bottom: 0.5rem;
     }
     .home-info p {
@@ -104,11 +105,15 @@
 
     /* Social Icons */
     .social-icons {
-  margin-top: 1rem;
+  margin-top: 1.7rem;
   display: flex;
   justify-content: flex-start; /* This aligns items to the left */
   gap: 1rem;
-  padding: 0 2.6rem; /* Same as your welcome-text padding */
+  padding: 0 2.4rem; /* Same as your welcome-text padding */
+
+    position: absolute;
+    top: 170px; /* Distance from the top */
+    right: 970px; /* Distance from the right */
 }
 
 .social-icons a {
@@ -123,8 +128,8 @@
     color: var(--link-color);
 }
 .social-icons svg {
-    width: 20px;
-    height: 20px;
+    width: 27px;
+    height: 27px;
     stroke-width: 1.5;
 }
 
@@ -165,23 +170,42 @@
       gap: 1rem;
     }
     .welcome-text {
-  font-size: 0.65rem; /* Smaller text (14px) */
-    padding: 0rem 2.6rem;
+  font-size: 1rem; /* Smaller text (14px) */
+  padding: .1rem 0rem;
     margin-top: 0rem;
         color: #bbb; /* Optional: Make it a bit gray for a softer look */
+
+
+              position: absolute;
+    top: 150px; /* Distance from the top */
+    right: 670px; /* Distance from the right */
 }
 
    .welcome-title {
-      font-size: 1.3rem; /* Smaller text (14px) */
+      font-size: 2rem; /* Smaller text (14px) */
 
-  padding: .1rem 2.5rem;
+  padding: .1rem 0rem;
+
+
+      position: absolute;
+    top: 100px; /* Distance from the top */
+    right: 620px; /* Distance from the right */
 
 }
 #theme-toggle {
     position: absolute;
-    top: 14px; /* Distance from the top */
-    right: 680px; /* Distance from the right */
+    top: 23px; /* Distance from the top */
+    right: 1058px; /* Distance from the right */
 }
+.site-title{
+        font-size: 1.3rem; /* Smaller text (14px) */
+}
+.N {
+    position: absolute;
+    top: 20px; /* Distance from the top */
+    right: 1045px; /* Distance from the right */
+}
+
 
     /* Footer */
     footer {
@@ -196,6 +220,7 @@
     @media (max-width: 768px) {
       .nav {
         display: none; /* Hide the nav on small screens or make a hamburger menu if you prefer */
+
       }
     }
   </style>
@@ -211,9 +236,9 @@
 <body>
 
 <header>
-    <a class="site-title" href="#">S'Log</a>
+    <a class="site-title" href="#">Shehab'Log</a>
     <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -227,12 +252,13 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
+                <a class="N">|</a>
     <nav class="nav">
-      <a href="#">Posts</a>
-      <a href="#">Archive</a>
-      <a href="#">Search</a>
-      <a href="#">Tags</a>
-      <a href="#">FAQ</a>
+      <h href="#">Posts</h>
+      <h href="#">Archive</h>
+      <h href="#">Search</h>
+      <h href="#">Tags</h>
+      <h href="#">FAQ</h>
     </nav>
 
   </header>
