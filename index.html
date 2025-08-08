@@ -11,73 +11,125 @@
     <meta name="author" content="shehab ashraf">
     <link rel="canonical" href="https://shehab-ashraf.github.io/" />
     <link crossorigin="anonymous" href="/assets/css/stylesheet.min.67a6fb6e33089cb29e856bcc95d7aa39f70049a42b123105531265a0d9f1258b.css" integrity="sha256-Z6b7bjMInLKehWvMldeqOfcASaQrEjEFUxJloNnxJYs=" rel="preload stylesheet" as="style">
-  
-   
     <link rel="icon" type="image/png" sizes="32x32" href="/image.png">
-
-
     <link rel="mask-icon" href="https://shehab-ashraf.github.io/safari-pinned-tab.svg">
     <meta name="theme-color" content="#1e1e1e">
     <link rel="alternate" type="application/rss+xml" href="https://shehab-ashraf.github.io/index.xml">
     <link rel="alternate" type="application/json" href="https://shehab-ashraf.github.io/index.json">
     <link rel="alternate" hreflang="en" href="https://shehab-ashraf.github.io/" />
-    
+
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+
+
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+
+<noscript>
     <style>
-        :root {
-            --theme: #1e1e1e;
-            --entry: #2a2a2a;
-            --primary: #ffffff;
-            --secondary: #b0b0b0;
-            --tertiary: #555555;
-            --content: #d0d0d0;
-            --hljs-bg: #2a2a2a;
-            --code-bg: #333333;
-            --border: #444444;
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
 
-        body {
-            background-color: var(--theme);
-            color: var(--primary);
-        }
-
-        .list {
-            background: var(--theme);
-        }
     </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HFT45VFBX6"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-HFT45VFBX6');
-    </script>
-    <meta property="og:title" content="shehab'Log" />
-    <meta property="og:description" content="Document my learning notes." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://shehab-ashraf.github.io/" />
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="shehab'Log"/>
-    <meta name="twitter:description" content="Document my learning notes."/>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "shehab'Log",
-        "url": "https://shehab-ashraf.github.io/",
-        "description": "Document my learning notes.",
-        "thumbnailUrl": "https://shehab-ashraf.github.io/favicon_wine.ico",
-        "sameAs": [
-            "https://twitter.com/shehab-ashraf/", 
-            "https://scholar.google.com/citations?user=dCa-pW8AAAAJ\u0026hl=en\u0026oi=ao", 
-            "index.xml", 
-            "https://github.com/shehab-ashraf"
-        ]
-    }
-    </script>
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HFT45VFBX6"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-HFT45VFBX6');
+        }
+      </script><meta property="og:title" content="Building Learner: A Flexible Deep Learning Training Framework from Scratch" />
+
+
+
+<style>
+body {
+    font-family: Arial, sans-serif !important;
+}
+</style>
+
+
+
 </head>
 
-<body class="list dark" id="top">
+<body class="" id="top">
+
+
+<script>
+        // Default to dark mode always
+        if (localStorage.getItem("pref-theme") === "dark") {
+            document.body.classList.add('dark');
+        } else if (localStorage.getItem("pref-theme") === "light") {
+            document.body.classList.remove('dark')
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+    
+</script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+
+  window.addEventListener('load', (event) => {
+      document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<body class="list" id="top">
     <header class="header">
         <nav class="nav">
             <div class="logo">
@@ -93,22 +145,22 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://shehab-ashraf.github.io/archives" title="Archive">
+                    <a href="/archives/" title="Archive">
                         <span>Archive</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://shehab-ashraf.github.io/search/" title="Search (Alt + /)" accesskey=/>
+                    <a href="/search/" title="Search (Alt + /)" accesskey=/>
                         <span>Search</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://shehab-ashraf.github.io/tags/" title="Tags">
+                    <a href="/tags/" title="Tags">
                         <span>Tags</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://shehab-ashraf.github.io/faq" title="FAQ">
+                    <a href="/faq/" title="FAQ">
                         <span>FAQ</span>
                     </a>
                 </li>
@@ -116,13 +168,12 @@
         </nav>
     </header>
 
+
     <main class="main"> 
         <article class="first-entry home-info">
-            <header class="entry-header">
-                <h1>👋 Welcome</h1>
-            </header>
+
             <section class="entry-content">
-                <p>I'm Shehab. This blog is where I document my learning journey, insights, and notes.</p>
+                <p>👋 Hi, I'm Shehab. This blog is where I document my learning journey, insights, and notes.</p>
             </section>
             <footer class="entry-footer">
                 <div class="social-icons">
@@ -134,6 +185,23 @@
                 </div>
             </footer>
         </article>
+
+       
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Building Learner: Your Own Training Engine
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>we’re diving into the process of training a model. As we train this model, we won’t just write throwaway code. 
+        we’ll build a flexible, reusable training framework called Learner...</p>
+  </section>
+  <footer class="entry-footer">Date: Auguest 1, 2025  |  Estimated Reading Time: 40 min  |  Author: shehab-ashraf</footer>
+  <a class="entry-link" aria-label="post link to Why We Think" href="/posts/Learner.html"></a>
+</article>
+
+
     </main>
 
 

@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head>
+    <meta name="generator" content="Hugo 0.139.3"><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="index, follow">
+    <title>Building Learner: Your Own Training Engine</title>
+    <meta name="description" content="Document my learning notes.">
+    <meta name="author" content="shehab ashraf">
+    <link rel="canonical" href="https://shehab-ashraf.github.io/" />
+    <link crossorigin="anonymous" href="/assets/css/stylesheet.min.67a6fb6e33089cb29e856bcc95d7aa39f70049a42b123105531265a0d9f1258b.css" integrity="sha256-Z6b7bjMInLKehWvMldeqOfcASaQrEjEFUxJloNnxJYs=" rel="preload stylesheet" as="style">
+    <link rel="icon" type="image/png" sizes="32x32" href="/image.png">
+    <link rel="mask-icon" href="https://shehab-ashraf.github.io/safari-pinned-tab.svg">
+    <meta name="theme-color" content="#1e1e1e">
+    <link rel="alternate" type="application/rss+xml" href="https://shehab-ashraf.github.io/index.xml">
+    <link rel="alternate" type="application/json" href="https://shehab-ashraf.github.io/index.json">
+    <link rel="alternate" hreflang="en" href="https://shehab-ashraf.github.io/" />
+
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+
+
+
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-HFT45VFBX6"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-HFT45VFBX6');
+        }
+      </script><meta property="og:title" content="Building Learner: A Flexible Deep Learning Training Framework from Scratch" />
+
+
+
+<style>
+body {
+    font-family: Arial, sans-serif !important;
+}
+</style>
+
+
+
+</head>
+
+<body class="" id="top">
+
+
+<script>
+        // Default to dark mode always
+        if (localStorage.getItem("pref-theme") === "dark") {
+            document.body.classList.add('dark');
+        } else if (localStorage.getItem("pref-theme") === "light") {
+            document.body.classList.remove('dark')
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+    
+</script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+
+  window.addEventListener('load', (event) => {
+      document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+<body class="list" id="top">
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <a href="https://shehab-ashraf.github.io/" accesskey="h" title="shehab'Log (Alt + H)"></a>
+                <span class="logo-switches">
+                    <ul class="lang-switch"><li></li></ul>
+                </span>
+            </div>
+            <ul id="menu">
+                <li>
+                    <a href="/posts/" title="Posts">
+                        <span class="active">Posts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://shehab-ashraf.github.io/archives" title="Archive">
+                        <span>Archive</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://shehab-ashraf.github.io/search/" title="Search (Alt + /)" accesskey=/>
+                        <span>Search</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://shehab-ashraf.github.io/tags/" title="Tags">
+                        <span>Tags</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://shehab-ashraf.github.io/faq" title="FAQ">
+                        <span>FAQ</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+<main class="main">
+
+
+
+
+
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+        Building Learner: Your Own Training Engine
+    </h1>
+    <div class="post-meta">Date: Auguest 1, 2025  |  Estimated Reading Time: 40 min  |  Author: Shehab Ashraf
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#Intorduction to Learner and why we need it" aria-label="Intorduction to Learner and why we need it">Intorduction to Learner and why we need it</a> 
+                </li>
+
+                <li>
+                    <a href="#Prepare Data, Get Model, Define Loss & Optimizer" aria-label="Prepare Data, Get Model, Define Loss & Optimizer">Prepare Data, Get Model, Define Loss & Optimizer</a><ul>
+                    <li> 
+                    <a href="#Load and Prepare the Dataset" aria-label="Load and Prepare the Dataset">Load and Prepare the Dataset</a>
+                    </li>
+                    <li>
+                    <a href="#Define the Model" aria-label="Define the Model">Define the Model</a>
+                    </li>
+                    <li>
+                    <a href="#Loss Function & Optimizer" aria-label="Loss Function & Optimizer">Loss Function & Optimizer</a>
+                    </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#Introducing the Learner: The Heart of Our Training Engine" aria-label="Introducing the Learner: The Heart of Our Training Engine">Introducing the Learner: The Heart of Our Training Engine</a><ul>
+                        <li>
+                            <a href="#The Training Flow Inside Learner" aria-label="The Training Flow Inside Learner">The Training Flow Inside Learner</a>
+                        </li>
+                        <li>
+                            <a href="#to_device(x) & to_cpu(x)" aria-label="to_device(x) & to_cpu(x)">to_device(x) & to_cpu(x)</a>
+                        </li>
+                        <li>
+                            <a href="#Exceptions" aria-label="Exceptions">Exceptions</a>
+                        </li>
+                        <li>
+                             <a href="#Callback Hooks & Decorators: The Learner’s Secret Sauce" aria-label="Callback Hooks & Decorators: The Learner’s Secret Sauce">Callback Hooks & Decorators: The Learner’s Secret Sauce</a>
+
+                        </li>
+                        <li>
+                            <a href="#Essential Callbacks" aria-label="Essential Callbacks">Essential Callbacks</a>
+                        </li>
+                        <li>
+                            <a href="#Activating the Engine: The Callbacks That Actually Train the Model" aria-label="Activating the Engine: The Callbacks That Actually Train the Model">Activating the Engine: The Callbacks That Actually Train the Model</a>
+                        </li>
+                </li>
+            </ul>
+            <li>
+                    <a href="#Wrapping It All Up" aria-label="Wrapping It All Up">Wrapping It All Up</a>
+
+                </li>
+
+        </div>
+    </details>
+</div>
+
+  <div class="post-content">
+<h1 id="Intorduction to Learner and why we need it">Intorduction to Learner and why we need it<a hidden class="anchor" aria-hidden="true" href="#Intorduction to Learner and why we need it">#</a></h1>
+<p>
+
+Today, we’re diving into the process of training a model.
+As we train this model, we won’t just write throwaway code — we’ll build a flexible, 
+reusable training framework called <mark>Learner</mark>. 
+Think of it as a lightweight version of FastAI or PyTorch Lightning — 
+but unlike those high-level libraries , 
+here we build everything ourselves.
+
+
+<h1 id="Prepare Data, Get Model, Define Loss & Optimizer">Prepare Data, Get Model, Define Loss & Optimizer<a hidden class="anchor" aria-hidden="true" href="#Prepare Data, Get Model, Define Loss & Optimizer">#</a></h1>
+
+we will get FashionMNIST dataset,
+which is a dataset of 60,000 training images and 10,000 test images
+
+<h2 id="Load and Prepare the Dataset">Load and Prepare the Dataset<a hidden class="anchor" aria-hidden="true" href="#Load and Prepare the Dataset">#</a></h1>
+
+
+We’ll use 🤗 Hugging Face's datasets library to grab FashionMNIST, 
+and albumentations for fast image transformations:
+<pre><code>from datasets import load_dataset
+import albumentations as A
+from albumentations.pytorch import ToTensorV2
+import numpy as np
+
+data_set = load_dataset("fashion_mnist")
+
+transforms = A.Compose([
+    A.Normalize(mean=0.5, std=0.5),
+    ToTensorV2()
+])</pre></code>
+Let’s building the dataset in a PyTorch Dataset:
+
+<pre><code>from torch.utils.data import Dataset, DataLoader
+
+class ImageDataset(Dataset):
+    def __init__(self, dataset, transforms=None):
+        self.ds = dataset
+        self.transforms = transforms
+    
+    def __len__(self):
+        return len(self.ds)
+    
+    def __getitem__(self, idx):
+        image = self.ds[idx]["image"]
+        label = self.ds[idx]["label"]
+        if self.transforms:
+            image = self.transforms(image=np.array(image))["image"]
+        return image, label</pre></code>
+
+Set up your DataLoaders:
+<pre><code>bs = 64
+
+train_dl = DataLoader(ImageDataset(data_set["train"], transforms=t), batch_size=bs, shuffle=True)
+valid_dl = DataLoader(ImageDataset(data_set["test"], transforms=t), batch_size=bs, shuffle=False)
+
+class DataLoaders:
+    def __init__(self, train, valid):
+        self.train = train
+        self.valid = valid
+
+dls = DataLoaders(train_dl, valid_dl)</pre></code>
+<h2 id="Define the Model">Define the Model<a hidden class="anchor" aria-hidden="true" href="#Define the Model">#</a></h1>
+We'll start simple — just a pure convolutional architecture:
+<pre><code>import torch
+import torch.nn as nn
+
+def conv(ni, nf, ks=3, act=True):
+    res = nn.Conv2d(ni, nf, stride=2, kernel_size=ks, padding=ks//2)
+    if act: res = nn.Sequential(res, nn.ReLU())
+    return reset
+
+def get_model():
+    return nn.Sequential(conv(1, 8), conv(8, 16), conv(16, 32), conv(32, 64), conv(64, 10, act=False), nn.Flatten())
+
+model = get_model()
+</pre></code>
+
+<h2 id="Loss Function & Optimizer">Loss Function & Optimizer<a hidden class="anchor" aria-hidden="true" href="#Loss Function & Optimizer"></a></h1>
+Let’s use a standard cross-entropy loss for multi-class classification:
+<pre><code>import torch.nn.functional as F
+loss_func = F.cross_entropy
+</code></pre>
+And the AdamW optimizer:
+<pre><code>optimizer = torch.optim.Adamw(model.parameters(), lr=0.001)
+</code></pre>
+
+now what we will do here is like what happens in most deep learning workflows: 
+loop through data, compute predictions, calculate loss, backpropagate, and update weights.
+so now let's see how we will build Learner to do this.
+
+<h1 id="Introducing the Learner: The Heart of Our Training Engine">Introducing the Learner: The Heart of Our Training Engine<a hidden class="anchor" aria-hidden="true" href="#Introducing the Learner: The Heart of Our Training Engine"></a></h1>
+The Learner is the core engine that brings everything together the model, 
+the data, the loss function, the optimizer, and the training loop 
+<br><br>
+
+<strong>Learner Class (Take a Look!)</strong>
+<details> 
+    <pre><code>import math, torch, matplotlib.pyplot as plt
+import fastcore.all as fc
+from collections.abc import Mapping
+from operator import attrgetter
+from functools import partial
+from copy import copy
+from torch import optim
+import torch.nn.functional as F
+from fastprogress import progress_bar, master_bar
+from torch.optim.lr_scheduler import ExponentialLR
+from torcheval.metrics import MulticlassAccuracy, Mean, MulticlassConfusionMatrix
+from torch.optim import lr_scheduler
+import seaborn as sns
+import numpy as np
+
+def to_cpu(x):
+    if isinstance(x, Mapping): return {k:to_cpu(v) for k,v in x.items()}
+    if isinstance(x, list): return [to_cpu(o) for o in x]
+    if isinstance(x, tuple): return tuple(to_cpu(list(x)))
+    res = x.detach().cpu()
+    return res.float() if res.dtype == torch.float16 else res
+
+def_device = 'mps' if torch.backends.mps.is_available() else 'cuda' if torch.cuda.is_available() else 'cpu'
+def to_device(x, device=def_device):
+    if isinstance(x, torch.Tensor): return x.to(device)
+    if isinstance(x, Mapping): return {k: v.to(device) for k, v in x.items()}
+    return type(x)(to_device(o, device) for o in x)
+
+class CancelFitException(Exception): pass
+class CancelBatchException(Exception): pass
+class CancelEpochException(Exception): pass
+
+class Callback(): order = 0
+
+def run_cbs(cbs, method_nm, learn=None):
+    for cb in sorted(cbs, key=attrgetter('order')):
+        method = getattr(cb, method_nm, None)
+        if method is not None: method(learn)
+
+class with_cbs:
+    def __init__(self, nm): self.nm = nm
+    def __call__(self, f):
+        def _f(o, *args, **kwargs):
+            try:
+                o.callback(f'before_{self.nm}')
+                f(o, *args, **kwargs)
+                o.callback(f'after_{self.nm}')
+            except globals()[f'Cancel{self.nm.title()}Exception']: pass
+            finally: o.callback(f'cleanup_{self.nm}')
+        return _f
+
+class Learner():
+    def __init__(self, model, dls=(0,), loss_func=F.mse_loss, lr=0.0001, cbs=None):
+        cbs = fc.L(cbs)
+        fc.store_attr()
+
+    @with_cbs('batch')
+    def _one_batch(self):
+        self.predict()
+        self.callback('after_predict')
+        self.get_loss()
+        self.callback('after_loss')
+        if self.training:
+            self.backward()
+            self.callback('after_backward')
+            self.step()
+            self.callback('after_step')
+            self.zero_grad()
+
+    @with_cbs('epoch')
+    def _one_epoch(self):
+        for self.iter, self.batch in enumerate(self.dl): self._one_batch()
+
+    def one_epoch(self, training):
+        self.model.train(training)
+        self.dl = self.dls.train if training else self.dls.valid
+        self._one_epoch()
+
+    @with_cbs('fit')
+    def _fit(self, train, valid):
+        for self.epoch in self.epochs:
+            if train: self.one_epoch(True)
+            if valid: torch.no_grad()(self.one_epoch)(False)
+
+    def fit(self, n_epochs=1, train=True, valid=True, cbs=None, lr=None):
+        cbs = fc.L(cbs)
+        for cb in cbs: self.cbs.append(cb)
+        try:
+            self.n_epochs = n_epochs
+            self.epochs = range(n_epochs)
+            if lr is not None: self.lr = lr
+            self._fit(train, valid)
+        finally:
+            for cb in cbs: self.cbs.remove(cb)
+
+    def __getattr__(self, name):
+        if name in ('predict','get_loss','backward','step','zero_grad'):
+            return partial(self.callback, name)
+        raise AttributeError(name)
+
+    def callback(self, method_nm): run_cbs(self.cbs, method_nm, self)
+
+    @property
+    def training(self): return self.model.training
+
+@fc.patch
+def lr_find(self:Learner, gamma=1.3, max_mult=3, start_lr=1e-5, max_epochs=10):
+    self.fit(max_epochs, lr=start_lr, cbs=[LRFinderCB(gamma=gamma, max_mult=max_mult)])
+
+</code></pre>
+</details>
+
+<h2 id="The Training Flow Inside Learner">The Training Flow Inside Learner<a hidden class="anchor" aria-hidden="true" href="#A Boy, His Dog, and Uncertainty">#</a></h2>
+Before diving into the details, let’s look at the big picture: how training works when you use the Learner.
+<pre><code>learner = Learner(model, dls, loss_func, lr=1e-3, cbs=[...])
+learner.fit(n_epochs)
+</code></pre>
+
+<section class="mt-6">
+
+  <p><code>fit()</code> starts the training for <code>n_epochs</code>.</p>
+
+  <ul class="list-disc pl-6 mt-2 mb-4">
+    <li><strong>In each epoch</strong>, it runs:
+      <ul class="list-disc pl-6 mt-1">
+        <li><code>one_epoch(train=True)</code> &rarr; runs training loop</li>
+        <li><code>one_epoch(train=False)</code> &rarr; runs validation loop</li>
+      </ul>
+    </li>
+    <li><strong>In each epoch</strong>, it loops over batches using:
+      <ul class="list-disc pl-6 mt-1">
+        <li><code>_one_batch()</code> &rarr; handles forward pass, loss calculation, backward pass, and optimizer step</li>
+      </ul>
+    </li>
+    <li><strong>At each stage</strong> ( <code>before_fit</code>, <code>after_batch</code>, etc.), it calls:
+      <ul class="list-disc pl-6 mt-1">
+        <li><code>self('event_name')</code> &rarr; triggers all matching callback hooks</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p class="mt-2">That’s the entire training lifecycle.</p>
+
+</section>
+
+
+<h2 id="to_device(x) & to_cpu(x)">to_device(x) & to_cpu(x)<a hidden class="anchor" aria-hidden="true" href="#to_device(x) & to_cpu(x)">#</a></h2>
+
+<pre><code>from collections.abc import Mapping
+
+def to_cpu(x):
+    if isinstance(x, Mapping): return {k: to_cpu(v) for k, v in x.items()}
+    if isinstance(x, list): return [to_cpu(o) for o in x]
+    if isinstance(x, tuple): return tuple(to_cpu(list(x)))
+    res = x.detach().cpu()
+    return res.float() if res.dtype == torch.float16 else res
+
+def_device = 'mps' if torch.backends.mps.is_available() else 'cuda' if torch.cuda.is_available() else 'cpu'
+
+def to_device(x, device=def_device):
+    if isinstance(x, torch.Tensor): return x.to(device)
+    if isinstance(x, Mapping): return {k: v.to(device) for k, v in x.items()}
+    return type(x)(to_device(o, device) for o in x)
+</code></pre>
+
+<code>to_cpu(x)</code>:<br>
+Recursively moves any tensor (or nested dict/list/tuple of tensors) to the CPU.
+This is useful before plotting, logging, or saving predictions.<br>
+
+<code>to_device(x)</code>:<br>
+Moves any tensor (or nested container) to a chosen device: CUDA, MPS, or CPU.
+Default device is auto-detected.
+
+<h2 id="Exceptions">Exceptions<a hidden class="anchor" aria-hidden="true" href="#Exceptions">#</a></h2>
+
+<p>
+In deep learning training, sometimes you want to stop early or interrupt an epoch —
+<strong>not because something broke</strong>, but because you intentionally want to change the flow.
+</p>
+
+<p>We define three custom exceptions — each tied to a specific training phase:</p>
+
+<pre><code>class CancelFitException(Exception): pass
+class CancelEpochException(Exception): pass
+class CancelBatchException(Exception): pass</code></pre>
+
+<h3> Where Are They Caught?</h3>
+
+<p>
+They are only caught inside the <code>@with_cbs</code> decorator, which wraps each training phase.
+Here’s the core pattern:
+</p>
+
+<pre><code>try:
+    o.callback(f'before_{self.nm}')
+    f(o, *args, **kwargs)
+    o.callback(f'after_{self.nm}')
+except globals()[f'Cancel{self.nm.title()}Exception']:
+    pass
+finally:
+    o.callback(f'cleanup_{self.nm}')
+</code></pre>
+
+<p><strong>What does this mean?</strong></p>
+<ul>
+  <li><code>CancelFitException</code> → Stops the entire <code>.fit()</code> process</li>
+  <li><code>CancelEpochException</code> → Skips the rest of the current epoch</li>
+  <li><code>CancelBatchException</code> → Skips the current batch and goes to the next</li>
+</ul>
+
+<h3> Example: Skip a Batch</h3>
+
+<p>Imagine a callback decides a batch has a something wrong and we want to skip it. It raises:</p>
+
+<pre><code>raise CancelBatchException()</code></pre>
+
+<p>Here’s what happens inside the training loop:</p>
+
+<pre><code>                raise CancelBatchException()
+                             ↓
+      ┌──────────────────── try ─────────────────────┐
+      │   o.callback('before_batch')                 │
+      │   f(...)   ← this raises the exception       │
+      │   o.callback('after_batch')   ← skipped!     │
+      └────────── except CancelBatchException ───────┘
+                             ↓
+                           pass
+                             ↓
+               finally → o.callback('cleanup_batch')
+                             ↓
+                   training continues to next batch
+</code></pre>
+
+<p>
+This control flow keeps training safe, clean, and easy to extend — without crashing or writing messy if-else logic.
+</p>
+
+<section id="Callback Hooks & Decorators: The Learner’s Secret Sauce">
+  <h2>Callback Hooks & Decorators: The Learner’s Secret Sauce<a hidden class="anchor" aria-hidden="true" href="#Callback Hooks & Decorators: The Learner’s Secret Sauce">#</a></h2>
+
+
+  <p>
+    In our Learner framework, we often want to <strong>inject behavior</strong> around core training steps like batches or epochs — like logging progress, tracking metrics, or early stopping.
+    <br>This is where <code>callbacks</code> come in — reusable plugins that hook into key training events.
+  </p>
+
+  <h3>What Is a Decorator?</h3>
+  <p>
+    A <strong>decorator</strong> is a callable that takes another function and returns a new one. Think of it as <em>wrapper logic</em> — allowing us to add extra behavior <strong>before and/or after</strong> the original function runs.
+  </p>
+
+  <pre><code class="language-python">class with_cbs:
+    def __init__(self, nm): self.nm = nm
+    def __call__(self, f):
+        def _f(o, *args, **kwargs):
+            try:
+                o.callback(f'before_{self.nm}')
+                f(o, *args, **kwargs)
+                o.callback(f'after_{self.nm}')
+            except globals()[f'Cancel{self.nm.title()}Exception']: pass
+            finally: o.callback(f'cleanup_{self.nm}')
+        return _f
+  </code></pre>
+
+
+<section>
+  <h3>How <code>@with_cbs</code> and <code>run_cbs</code> Work Together</h3>
+  <p>
+  <code>@with_cbs</code> and <code>run_cbs</code>enable us to inject behavior before and after major training stages — like <code>fit</code>, <code>batch</code>, or <code>epoch</code> — without hardcoding it inside the training loop.
+  </p>
+
+  <h4> What is <code>@with_cbs</code> Doing?</h4>
+  <p>
+    When you write something like:
+  </p>
+
+  <pre><code>@with_cbs('fit')
+def fit(self, epochs): 
+    for i in range(epochs): self.one_epoch()</code></pre>
+
+  <p>This gets transformed into a function that will automatically run:</p>
+
+  <pre><code>self.callback('before_fit')
+fit(self, ...)
+self.callback('after_fit')</code></pre>
+
+  <p>
+    That means any callback that defines a <code>before_fit</code> or <code>after_fit</code> method will be executed at just the right moment!
+  </p>
+
+  <h3>What Does <code>run_cbs</code> Actually Do?</h3>
+  <pre><code>def run_cbs(self, event):
+    for cb in self.cbs:
+        method = getattr(cb, event, None)
+        if method: method(self)</code></pre>
+
+  <ul>
+    <li><code>self.cbs</code> is a list of all your active callbacks (like <code>TrainCB</code>, <code>ProgressCB</code>, etc.).</li>
+    <li>For each callback, it looks up a method called <code>event</code> (e.g., <code>before_fit</code>).</li>
+    <li>If it exists, it calls that method and passes <code>self</code> (the Learner).</li>
+  </ul>
+</section>
+
+
+<h2 id="Essential Callbacks">Essential Callbacks<a hidden class="anchor" aria-hidden="true" href="#Essential Callbacks">#</a></h2>
+
+
+<p>
+While the <code>Learner</code> is built to be highly customizable through user-defined callbacks, 
+some callbacks are so fundamental that they act as <strong>the backbone of the training loop itself</strong>.
+</p>
+
+
+<p>
+Let’s explore essential ones: <code>DeviceCB</code>, <code>LRFinderCB</code>, and <code>ProgressCB</code>.
+</p>
+
+<h3><code>DeviceCB</code>: Move Data and Model to the Right Device</h3>
+<pre><code class="language-python">class DeviceCB(Callback):
+    def __init__(self, device=def_device): fc.store_attr()
+    def before_fit(self, learn):
+        if hasattr(learn.model, 'to'): learn.model.to(self.device)
+    def before_batch(self, learn): 
+        learn.batch = to_device(learn.batch, device=self.device)
+</code></pre>
+<p>
+This callback ensures your model and batches are on the correct device (usually GPU). It's called automatically before training begins and before each batch is processed.
+</p>
+
+<h3><code>OptimizerCB</code>: Connect the Model to the Optimizer</h3>
+<pre><code class="language-python">class OptimizerCB(Callback):
+    order = 0
+    def __init__(self, opt_func=partial(optim.SGD, momentum=0.9)):
+        self.opt_func = opt_func
+    def before_fit(self, learn):
+        learn.opt = self.opt_func(learn.model.parameters(), learn.lr)
+</code></pre>
+<p>
+This callback wires the model to the optimizer before training begins. </p>
+
+
+
+<h3><code>LRFinderCB</code>: Automatically Find a Good Learning Rate</h3>
+<pre><code class="language-python">class LRFinderCB(Callback):
+    order = float('inf')
+    def __init__(self, gamma=1.3, max_mult=3): fc.store_attr()
+    ...
+</code></pre>
+<p>
+Runs a learning rate finder experiment by gradually increasing the LR and recording the loss. Stops automatically when the loss explodes or diverges. Plots the loss vs LR so you can pick the best range.
+</p>
+
+<h3><code>ProgressCB</code>: Track and Visualize Training Progress</h3>
+<pre><code class="language-python">class ProgressCB(Callback):
+    order = float('inf')
+    def __init__(self, plot=False): self.plot = plot
+    ...
+</code></pre>
+<p>
+Creates nice progress bars using <code>fastprogress</code>, logs metrics in a clean table.
+
+<h2 id="Activating the Engine: The Callbacks That Actually Train the Model">Activating the Engine: The Callbacks That Actually Train the Model<a hidden class="anchor" aria-hidden="true" href="#Activating the Engine: The Callbacks That Actually Train the Model">#</a></h2>
+
+<p>
+In this section, we'll implement the actual training logic and performance tracking and we will do this with two callbacks:
+<code>TrainCB</code> and <code>MetricsCB</code>.
+</p>
+<p>
+These two callbacks are responsible for doing the <strong>learning</strong> and <strong>reporting</strong> in our <code>Learner</code>.  
+
+</p>
+
+<h3> <code>TrainCB</code>: The Callback That Trains the Model</h3>
+<p>
+This callback drives the core steps of training:
+</p>
+<ol>
+  <li>Forward pass: <code>model(x)</code></li>
+  <li>Loss computation: <code>loss_fn(preds, target)</code></li>
+  <li>Backward pass: <code>loss.backward()</code></li>
+  <li>Optimizer step: <code>opt.step()</code></li>
+  <li>Zeroing gradients: <code>opt.zero_grad()</code></li>
+</ol>
+<p>We implement each of these inside methods of <code>TrainCB</code>:</p>
+
+<pre><code class="language-python">class TrainCB(Callback):
+    order = DeviceCB.order + 1
+    def predict(self, learn): 
+        learn.preds = ...
+    def get_loss(self, learn): 
+        learn.loss = ...
+    def backward(self, learn): 
+        learn.loss.backward()
+    def step(self, learn): 
+        learn.opt.step()
+    def zero_grad(self, learn): 
+        learn.opt.zero_grad()
+</code></pre>
+
+
+
+<h3> <code>MetricsCB</code>: Tracking Progress Automatically</h3>
+<p>
+Once the model is learning, we want <strong>metrics</strong> and <strong>logs</strong> to tell us how it’s doing. That’s the job of <code>MetricsCB</code>.
+</p>
+<p>
+It tracks mean loss, accuracy, and any other metrics we want. It hooks into <code>after_batch</code> and <code>after_epoch</code> to:
+</p>
+<ul>
+  <li>Update all metrics</li>
+  <li>Log the results cleanly</li>
+  <li>Reset metrics between epochs</li>
+</ul>
+
+<pre><code class="language-python">
+from copy import copy
+from torcheval.metrics import Mean
+from utils import to_cpu
+
+class MetricsCB(Callback):
+    order = TrainCB.order + 1
+
+    def __init__(self, *ms, **metrics):
+        for o in ms: metrics[type(o).__name__] = o
+        self.metrics = metrics
+        self.all_metrics = copy(metrics)
+        self.all_metrics['loss'] = self.loss = Mean()
+
+    def _log(self, d): print(d)
+
+    def before_fit(self, learn): 
+        learn.metrics = self
+
+    def before_epoch(self, learn): 
+        [o.reset() for o in self.all_metrics.values()]
+
+    def after_batch(self, learn):
+        xb, yb = learn.batch
+        bs = len(yb)
+        self.loss.update(to_cpu(learn.loss), weight=bs)
+        for m in self.metrics.values():
+            m.update(to_cpu(learn.preds), to_cpu(yb))
+
+    def after_epoch(self, learn):
+        log = {k: f'{v.compute():.3f}' for k, v in self.all_metrics.items()}
+        log['epoch'] = learn.epoch
+        log['train'] = 'train' if learn.model.training else 'eval'
+        self._log(log)
+</code></pre>
+
+<p>We can pass any metric object from <code>torcheval</code> — accuracy, F1, precision — and it will log them all automatically.</p>
+
+<section id="Wrapping It All Up">
+  <h2 id="Wrapping It All Up">Wrapping It All Up<a hidden class="anchor" aria-hidden="true" href="#Wrapping It All Up">#</a></h2>
+
+
+  <p>
+    That’s it — we’ve built a small but powerful training engine: <strong>Learner</strong>.  
+    It handles the boring plumbing (data, devices, losses, optimizers) so you can focus on what matters: experiments and ideas.
+  </p>
+
+  <p>
+    The Learner was designed to be extended — add custom callbacks, try different optimizers, swap metrics, or plug in new training recipes.
+  </p>
+
+  <p>
+     <a href="#">Complete Code: Repo</a><br>
+     <a href="#">Full Training :Notebook</a>
+  </p>
+
+</section>
+
+
+
+
+
+  
+
+  </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://shehab-ashraf.github.io//">shehab</a></span>
+    <span>
+       
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
