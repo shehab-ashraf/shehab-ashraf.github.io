@@ -1,0 +1,18 @@
+# Site settings
+title: shehab Ashraf
+email: 
+description:
+baseurl: ""
+url: "http://shehabashraf.github.io"
+twitter_username: _Sashraf
+github_username:  shehab-ashraf
+
+# Build settings
+markdown: kramdown 
+permalink: pretty
+
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
