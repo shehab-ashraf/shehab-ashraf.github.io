@@ -1,5 +1,5 @@
 # Site settings
-title: shehab Ashraf
+title: shehab ashraf
 email: 
 description:
 baseurl: ""
@@ -9,9 +9,8 @@ github_username:  shehab-ashraf
 
 # Build settings
 markdown: kramdown 
-permalink: pretty
-
 highlighter: rouge
+permalink: /posts/:title/
 kramdown:
   input: GFM
   auto_ids: true
