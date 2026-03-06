@@ -2,17 +2,46 @@
 layout: default
 ---
 
-<div class="home">
-  
-  <ul class="posts">
+<div class="hero">
+  <div class="hero-content">
+    <h1>Hi, I'm {{ site.title }}</h1>
+    <p>
+
+    </p>
+  </div>
+</div>
+
+<section id="posts">
+  <h2 class="section-head">posts</h2>
+  <ul class="item-list">
     {% for post in site.posts %}
-      <li>
-        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        <br>
-        {{ post.excerpt }}
-      </li>
+    <li class="item-row">
+      <div class="item-date">{{ post.date | date: "%B %-d, %Y" }}</div>
+      <div class="item-details">
+        <a class="item-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        {% if post.description %}
+        <p class="item-desc">{{ post.description }}</p>
+        {% elsif post.excerpt %}
+        <p class="item-desc">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+        {% endif %}
+      </div>
+    </li>
     {% endfor %}
   </ul>
+</section>
 
-</div>
+
+
+<section id="projects">
+  <h2 class="section-head">projects</h2>
+  <ul class="item-list">
+
+  </ul>
+</section>
+
+<section id="reading-list">
+  <h2 class="section-head">favorite reads</h2>
+  <ul class="item-list">
+    <!-- Placeholder for favorite reads -->
+  </ul>
+</section>
