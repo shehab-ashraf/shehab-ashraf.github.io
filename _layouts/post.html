@@ -1,18 +1,14 @@
 ---
 layout: default
 ---
-<article class="post">
+<article class="post single-post">
   <header class="post-header">
-    <div class="post-title">
-      <h1>{{ page.title }}</h1>
-    </div>
+    <h1>{{ page.title }}</h1>
+    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}</p>
   </header>
 
-  <section class="post-content">
+  <div class="post-content">
     {{ content }}
-  </section>
-
-  <section class="post-footer">
-    <div id="references"></div>
-  </section>
+  </div>
 </article>
+{% include scroll-to-top.html %}

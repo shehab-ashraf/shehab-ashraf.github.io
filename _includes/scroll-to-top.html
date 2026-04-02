@@ -1,0 +1,36 @@
+<button type="button" id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top" aria-hidden="true" tabindex="-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+<script>
+(function () {
+  var btn = document.getElementById('scroll-to-top');
+  if (!btn) return;
+  var threshold = 280;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function sync() {
+    if (window.scrollY > threshold) {
+      btn.classList.add('is-visible');
+      btn.setAttribute('aria-hidden', 'false');
+      btn.removeAttribute('tabindex');
+    } else {
+      btn.classList.remove('is-visible');
+      btn.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('tabindex', '-1');
+    }
+  }
+
+  window.addEventListener('scroll', sync, { passive: true });
+  sync();
+
+  btn.addEventListener('click', function () {
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotion ? 'auto' : 'smooth'
+    });
+    btn.blur();
+  });
+})();
+</script>
