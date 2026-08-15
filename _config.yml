@@ -1,17 +1,38 @@
-# Site settings
 title: shehab ashraf
-email: 
-description:
+email:
+description: "shehab ashraf — building fast systems for machine learning and GPUs."
 baseurl: ""
 url: "http://shehabashraf.github.io"
 twitter_username: _Sashraf
-github_username:  shehab-ashraf
+github_username: shehab-ashraf
+linkedin_username: shehab-ashraf
+substack_username:
 
 # Build settings
-markdown: kramdown 
+markdown: kramdown
 highlighter: rouge
 permalink: /posts/:title/
 kramdown:
   input: GFM
   auto_ids: true
   syntax_highlighter: rouge
+
+exclude:
+  - Readme.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
+  - .jekyll-cache
+  - .jekyll-metadata
+  - node_modules
+  - .github
+  - .idea
+  - .opencode
+  - .antigravitycli
+  - .commandcode
+  - openspec
+  - nano
+  - "*.swp"
+  - "*.swo"
+  - ".DS_Store"

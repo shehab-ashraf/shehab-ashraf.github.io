@@ -1,14 +1,23 @@
 ---
 layout: default
 ---
-<article class="post single-post">
+<article class="page page-post">
+  {% include page-nav.html page_id='blog' %}
+
+  <hr class="divider">
+
   <header class="post-header">
-    <h1>{{ page.title }}</h1>
-    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}</p>
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-meta">last update : {% if page.last_updated %}{{ page.last_updated | date: "%m/%d/%Y" }}{% else %}{{ page.date | date: "%m/%d/%Y" }}{% endif %}</p>
   </header>
 
   <div class="post-content">
     {{ content }}
   </div>
+
+  <hr class="divider">
+
+  <footer class="post-footer">
+    <a href="{{ '/blog/' | prepend: site.baseurl }}">[back to blog]</a>
+  </footer>
 </article>
-{% include scroll-to-top.html %}

@@ -1,0 +1,25 @@
+{%- comment -%}
+Compact horizontal social icons, used in the page-nav top-right.
+{%- endcomment -%}
+<div class="social-icons">
+  {% if site.linkedin_username %}
+  <a class="social-icon" href="https://www.linkedin.com/in/{{ site.linkedin_username }}" aria-label="linkedin">
+    <img src="{{ '/assets/linkedin.svg' | prepend: site.baseurl }}" alt="linkedin" width="16" height="16">
+  </a>
+  {% endif %}
+  {% if site.twitter_username %}
+  <a class="social-icon" href="https://x.com/{{ site.twitter_username }}" aria-label="x">
+    <img src="{{ '/assets/twitter.svg' | prepend: site.baseurl }}" alt="x" width="16" height="16">
+  </a>
+  {% endif %}
+  {% if site.github_username %}
+  <a class="social-icon" href="https://github.com/{{ site.github_username }}" aria-label="github">
+    <img src="{{ '/assets/github.svg' | prepend: site.baseurl }}" alt="github" width="16" height="16">
+  </a>
+  {% endif %}
+  {% if site.substack_username %}
+  <a class="social-icon" href="https://{{ site.substack_username }}.substack.com" aria-label="substack">
+    <img src="{{ '/assets/substack.svg' | prepend: site.baseurl }}" alt="substack" width="16" height="16">
+  </a>
+  {% endif %}
+</div>

@@ -1,0 +1,13 @@
+{%- comment -%}
+Shared top navigation used across all inner pages (blog, work, about, post).
+Pass `page_id` (e.g. 'blog') to mark the current page.
+{%- endcomment -%}
+<nav class="page-nav">
+  <div class="page-nav-links">
+    <a class="page-nav-link"{% if include.page_id == 'home' %} aria-current="page"{% endif %} href="{{ '/' | prepend: site.baseurl }}">[home]</a>
+    <a class="page-nav-link"{% if include.page_id == 'blog' %} aria-current="page"{% endif %} href="{{ '/blog/' | prepend: site.baseurl }}">[blog]</a>
+    <a class="page-nav-link"{% if include.page_id == 'work' %} aria-current="page"{% endif %} href="{{ '/work/' | prepend: site.baseurl }}">[work]</a>
+    <a class="page-nav-link"{% if include.page_id == 'about' %} aria-current="page"{% endif %} href="{{ '/about/' | prepend: site.baseurl }}">[about]</a>
+  </div>
+  {% include social-icons.html %}
+</nav>

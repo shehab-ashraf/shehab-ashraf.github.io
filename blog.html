@@ -1,0 +1,30 @@
+---
+layout: default
+title: blog
+permalink: /blog/
+page_id: blog
+---
+<article class="page">
+  {% include page-nav.html page_id='blog' %}
+
+  <hr class="divider">
+
+  <table class="post-table">
+    <thead>
+      <tr>
+        <th class="col-date">date</th>
+        <th class="col-title">title</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in site.posts %}
+        <tr>
+          <td class="col-date">{{ post.date | date: "%m/%d/%Y" }}</td>
+          <td class="col-title">
+            <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | downcase }}</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</article>
