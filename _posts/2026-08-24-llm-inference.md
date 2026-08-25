@@ -2,7 +2,8 @@
 layout: post
 title: "LLM Inference Engine"
 subtitle: "Building nano-infer from scratch — baseline, benchmarks, and the road ahead"
-date: 2026-08-25
+date: 2026-08-24
+last_updated: 2026-08-25
 category: systems
 project: "llm-inference"
 ---
